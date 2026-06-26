@@ -16,11 +16,11 @@
 
 # 📌 Phase 2: Database Setup  
 
-* [] Create PostgreSQL Database (NeonDB)
-* [] Configure Environment Variables
-* [] Create Database Connection
-* [] Test Database Connection
-* [] Git Commit
+* [Done] Create PostgreSQL Database (NeonDB)
+* [Done] Configure Environment Variables
+* [Done] Create Database Connection
+* [Done] Test Database Connection
+* [Done] Git Commit
 
 ---
 

@@ -1,12 +1,12 @@
 package config
 
 import (
+	"github.com/joho/godotenv"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 	"log"
 	"os"
-	"gorm.io/driver/postgres"
-
-	"github.com/joho/godotenv"
-	"gorm.io/gorm"
+	"spotsync-api/models"
 )
 
 var DB *gorm.DB
@@ -28,6 +28,9 @@ func ConnectDatabase() {
 	}
 
 	DB = db
-
+	err = DB.AutoMigrate(&models.User{}, &models.ParkingZone{}, &models.Reservation{})
+	if err != nil {
+		log.Fatal("Failed to migrate database")
+	}
 	log.Println("✅ Database connected successfully")
 }

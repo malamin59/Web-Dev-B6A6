@@ -20,5 +20,6 @@ func main() {
 		return c.String(http.StatusOK, "SpotSync API is running")
 	})
 
+
 	e.Logger.Fatal(e.Start(":8080"))
 }
