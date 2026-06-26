@@ -1,0 +1,7 @@
+.env
+tmp/
+air
+*.exe
+*.log
+dist/
+vendor/
