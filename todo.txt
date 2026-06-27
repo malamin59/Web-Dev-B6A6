@@ -26,12 +26,12 @@
 
 # 📌 Phase 3: Models
 
-* [] Create User Model
-* [] Create Parking Zone Model
-* [] Create Reservation Model
-* [] Define Relationships
-* [] Auto Migrate Database
-* [] Git Commit
+* [Done] Create User Model
+* [Done] Create Parking Zone Model
+* [Done] Create Reservation Model
+* [Done] Define Relationships
+* [Done] Auto Migrate Database
+* [Done] Git Commit
 
 ---
 

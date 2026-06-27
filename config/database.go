@@ -32,5 +32,5 @@ func ConnectDatabase() {
 	if err != nil {
 		log.Fatal("Failed to migrate database")
 	}
-	log.Println("✅ Database connected successfully")
+	log.Println("Database connected successfully")
 }
