@@ -42,3 +42,25 @@ func (h *AuthHandler) Register(c echo.Context) error {
 		"message": "User registered successfully",
 	})
 }
+
+func (h *AuthHandler) Login(c echo.Context) error {
+
+	var req dto.LoginRequest
+
+	if err := c.Bind(&req); err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"error": "invalid request body",
+		})
+	}
+
+	token, err := h.authService.Login(req)
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, map[string]string{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]string{
+		"token": token,
+	})
+}

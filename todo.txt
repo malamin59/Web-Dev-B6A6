@@ -37,12 +37,12 @@
 
 # 📌 Phase 4: Clean Architecture
 
-* [] Create DTO Layer
-* [] Create Repository Layer
-* [] Create Service Layer
-* [] Create Handler Layer
-* [] Register Routes
-* [] Git Commit
+* [Done] Create DTO Layer
+* [Done] Create Repository Layer
+* [Done] Create Service Layer
+* [Done] Create Handler Layer
+* [Done] Register Routes
+* [Done] Git Commit
 
 ---
 
@@ -50,22 +50,18 @@
 
 ## Register
 
-* [] Register DTO
-* [] Register Repository
-* [] Register Service
-* [] Register Handler
+* [Done] Register DTO
+* [Done] Register Repository
+* [Done] Register Service
+* [Done] Register Handler
 
 ## Login
 
-* [] Login DTO
-
-* [] Verify Password
-
-* [] Generate JWT Token
-
-* [] Login API Test
-
-* [] Git Commit
+* [Done] Login DTO
+* [Done] Verify Password
+* [Done] Generate JWT Token
+* [Done] Login API Test
+* [Done] Git Commit
 
 ---
 

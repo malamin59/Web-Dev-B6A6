@@ -8,4 +8,5 @@ import (
 
 func RegisterAuthRoutes(e *echo.Echo, authHandler *handler.AuthHandler) {
 	e.POST("/api/v1/auth/register", authHandler.Register)
+	e.POST("/api/v1/auth/login", authHandler.Login)
 }
