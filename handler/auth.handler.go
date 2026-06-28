@@ -64,3 +64,22 @@ func (h *AuthHandler) Login(c echo.Context) error {
 		"token": token,
 	})
 }
+
+func (h *AuthHandler) Profile(c echo.Context) error {
+
+	userID, ok := c.Get("userID").(float64)
+	if !ok {
+		return c.JSON(http.StatusUnauthorized, map[string]string{
+			"error": "invalid user id",
+		})
+	}
+
+	user, err := h.authService.GetProfile(uint(userID))
+	if err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, user)
+}

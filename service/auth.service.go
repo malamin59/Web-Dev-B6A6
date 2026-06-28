@@ -3,16 +3,18 @@ package service
 import (
 	"errors"
 	"fmt"
-	"golang.org/x/crypto/bcrypt"
 	"spotsync-api/dto"
 	"spotsync-api/models"
 	"spotsync-api/repository"
 	"spotsync-api/utils"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type AuthService interface {
 	Register(req dto.RegisterRequest) error
 	Login(req dto.LoginRequest) (string, error)
+	GetProfile(userID uint) (*models.User, error)
 }
 
 type authService struct {
@@ -78,4 +80,13 @@ func (s *authService) Login(req dto.LoginRequest) (string, error) {
 	}
 
 	return token, nil
+}
+func (s *authService) GetProfile(userID uint) (*models.User, error) {
+
+	user, err := s.repo.FindByID(userID)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
 }

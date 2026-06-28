@@ -67,7 +67,7 @@
 
 # 📌 Phase 6: Middleware
 
-* [] JWT Middleware
+* [Done] JWT Middleware
 * [] Role Middleware
 * [] Protect Routes
 * [] Git Commit
