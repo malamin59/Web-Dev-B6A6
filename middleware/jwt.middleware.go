@@ -34,7 +34,7 @@ func JWTMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 			return []byte(os.Getenv("JWT_SECRET")), nil
 		})
 
-		fmt.Println("JWT_SECRET:", os.Getenv("JWT_SECRET"))
+		// fmt.Println("JWT_SECRET:", os.Getenv("JWT_SECRET"))
 
 		if err != nil {
 			fmt.Println("JWT Parse Error:", err)

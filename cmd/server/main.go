@@ -32,5 +32,10 @@ func main() {
 
 	routes.RegisterAuthRoutes(e, authHandler)
 
+	parkingRepo := repository.NewParkingZoneRepository(config.DB)
+	parkingService := service.NewParkingZoneService(parkingRepo)
+	parkingHandler := handler.NewParkingZoneHandler(parkingService)
+	routes.RegisterParkingZoneRoutes(e, parkingHandler)
+
 	e.Logger.Fatal(e.Start(":8080"))
 }

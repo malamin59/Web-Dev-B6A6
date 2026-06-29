@@ -83,3 +83,17 @@ func (h *AuthHandler) Profile(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, user)
 }
+
+/* GET ALL USER IN HANDLER PAGE   */
+
+func (h *AuthHandler) GetAllUsers(c echo.Context) error {
+
+	users, err := h.authService.GetAllUsers()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, users)
+}

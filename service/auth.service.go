@@ -15,6 +15,7 @@ type AuthService interface {
 	Register(req dto.RegisterRequest) error
 	Login(req dto.LoginRequest) (string, error)
 	GetProfile(userID uint) (*models.User, error)
+	GetAllUsers() ([]models.User, error)
 }
 
 type authService struct {
@@ -89,4 +90,10 @@ func (s *authService) GetProfile(userID uint) (*models.User, error) {
 	}
 
 	return user, nil
+}
+
+
+  /* GET ALL USER IN AUTH SERVICE */
+  func (s *authService) GetAllUsers() ([]models.User, error) {
+	return s.repo.GetAll()
 }
