@@ -79,18 +79,18 @@
 * [Done] Create Parking Zone
 * [Done] Get All Parking Zones
 * [Done] Get Single Parking Zone
-* [] Update Parking Zone
-* [] Delete Parking Zone
-* [] Calculate Available Spots
-* [] Git Commit
+* [Done] Update Parking Zone
+* [Done] Delete Parking Zone
+* [Done] Calculate Available Spots
+* [Done] Git Commit
 
 ---
 
 # 📌 Phase 8: Reservation Module
 
-* [] Reserve Parking Spot
-* [] Get My Reservations
-* [] Cancel Reservation
+* [Done] Reserve Parking Spot
+* [Done] Get My Reservations
+* [Done] Cancel Reservation
 * [] Get All Reservations (Admin)
 * [] Git Commit
 

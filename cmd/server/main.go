@@ -37,5 +37,15 @@ func main() {
 	parkingHandler := handler.NewParkingZoneHandler(parkingService)
 	routes.RegisterParkingZoneRoutes(e, parkingHandler)
 
+	// Reservation Module
+	// =========================
+	reservationRepo := repository.NewReservationRepository(config.DB)
+	reservationService := service.NewReservationService(
+		reservationRepo,
+		parkingRepo,
+	)
+	reservationHandler := handler.NewReservationHandler(reservationService)
+	routes.RegisterReservationRoutes(e, reservationHandler)
+
 	e.Logger.Fatal(e.Start(":8080"))
 }
