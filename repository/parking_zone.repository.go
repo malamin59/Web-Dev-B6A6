@@ -8,6 +8,8 @@ import (
 
 type ParkingZoneRepository interface {
 	Create(zone *models.ParkingZone) error
+	GetAll() ([]models.ParkingZone, error)
+	FindByID(id uint) (*models.ParkingZone, error)
 }
 
 type parkingZoneRepository struct {
@@ -22,4 +24,27 @@ func NewParkingZoneRepository(db *gorm.DB) ParkingZoneRepository {
 }
 func (r *parkingZoneRepository) Create(zone *models.ParkingZone) error {
 	return r.db.Create(zone).Error
+}
+
+
+func (r *parkingZoneRepository) GetAll() ([]models.ParkingZone, error) {
+
+	var zones []models.ParkingZone
+
+	if err := r.db.Find(&zones).Error; err != nil {
+		return nil, err
+	}
+
+	return zones, nil
+}
+
+func (r *parkingZoneRepository) FindByID(id uint) (*models.ParkingZone, error) {
+
+	var zone models.ParkingZone
+
+	if err := r.db.First(&zone, id).Error; err != nil {
+		return nil, err
+	}
+
+	return &zone, nil
 }

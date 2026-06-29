@@ -77,8 +77,8 @@
 # 📌 Phase 7: Parking Zone Module
 
 * [Done] Create Parking Zone
-* [] Get All Parking Zones
-* [] Get Single Parking Zone
+* [Done] Get All Parking Zones
+* [Done] Get Single Parking Zone
 * [] Update Parking Zone
 * [] Delete Parking Zone
 * [] Calculate Available Spots

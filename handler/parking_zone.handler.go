@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"strconv"
 
 	"spotsync-api/dto"
 	"spotsync-api/service"
@@ -41,4 +42,35 @@ func (h *ParkingZoneHandler) Create(c echo.Context) error {
 	return c.JSON(http.StatusCreated, map[string]string{
 		"message": "Parking zone created successfully",
 	})
+}
+
+func (h *ParkingZoneHandler) GetAll(c echo.Context) error {
+
+	zones, err := h.parkingService.GetAll()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, zones)
+}
+
+func (h *ParkingZoneHandler) GetByID(c echo.Context) error {
+
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"error": "invalid parking zone id",
+		})
+	}
+
+	zone, err := h.parkingService.GetByID(uint(id))
+	if err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{
+			"error": "parking zone not found",
+		})
+	}
+
+	return c.JSON(http.StatusOK, zone)
 }

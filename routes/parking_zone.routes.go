@@ -15,4 +15,10 @@ func RegisterParkingZoneRoutes(e *echo.Echo, parkingHandler *handler.ParkingZone
 		middleware.JWTMiddleware,
 		middleware.RoleMiddleware("admin"),
 	)
+	e.GET(
+		"/api/v1/parking-zones",
+		parkingHandler.GetAll,
+		// middleware.JWTMiddleware,
+	)
+	e.GET("/api/v1/parking-zones/:id", parkingHandler.GetByID)
 }

@@ -9,6 +9,8 @@ import (
 
 type ParkingZoneService interface {
 	Create(req dto.CreateParkingZoneRequest) error
+	GetAll() ([]models.ParkingZone, error)
+	GetByID(id uint) (*models.ParkingZone, error)
 }
 
 type parkingZoneService struct {
@@ -43,4 +45,21 @@ func (s *parkingZoneService) Create(req dto.CreateParkingZoneRequest) error {
 
 	// Save
 	return s.repo.Create(&zone)
+}
+
+/* GET PARKING ZONE */
+func (s *parkingZoneService) GetAll() ([]models.ParkingZone, error) {
+	return s.repo.GetAll()
+}
+
+
+/* GET SINGLE PARING ZONE BY "ID" */
+func (s *parkingZoneService) GetByID(id uint) (*models.ParkingZone, error) {
+
+	zone, err := s.repo.FindByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return zone, nil
 }
