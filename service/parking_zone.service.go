@@ -11,6 +11,8 @@ type ParkingZoneService interface {
 	Create(req dto.CreateParkingZoneRequest) error
 	GetAll() ([]models.ParkingZone, error)
 	GetByID(id uint) (*models.ParkingZone, error)
+	Update(id uint, req dto.UpdateParkingZoneRequest) error
+	Delete(id uint) error
 }
 
 type parkingZoneService struct {
@@ -52,7 +54,6 @@ func (s *parkingZoneService) GetAll() ([]models.ParkingZone, error) {
 	return s.repo.GetAll()
 }
 
-
 /* GET SINGLE PARING ZONE BY "ID" */
 func (s *parkingZoneService) GetByID(id uint) (*models.ParkingZone, error) {
 
@@ -62,4 +63,34 @@ func (s *parkingZoneService) GetByID(id uint) (*models.ParkingZone, error) {
 	}
 
 	return zone, nil
+}
+
+/* Update Parking Zone */
+func (s *parkingZoneService) Update(id uint, req dto.UpdateParkingZoneRequest) error {
+
+	zone, err := s.repo.FindByID(id)
+	if err != nil {
+		return err
+	}
+
+	zone.Name = req.Name
+	zone.Location = req.Location
+	zone.TotalSpots = req.TotalSpots
+	zone.AvailableSpots = req.AvailableSpots
+	zone.EVChargingSpots = req.EVChargingSpots
+
+	return s.repo.Update(zone)
+}
+
+
+/* DELETE PARKING ZONE "Service"*/
+
+func (s *parkingZoneService) Delete(id uint) error {
+
+	_, err := s.repo.FindByID(id)
+	if err != nil {
+		return err
+	}
+
+	return s.repo.Delete(id)
 }

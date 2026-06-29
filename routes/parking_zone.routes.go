@@ -21,4 +21,18 @@ func RegisterParkingZoneRoutes(e *echo.Echo, parkingHandler *handler.ParkingZone
 		// middleware.JWTMiddleware,
 	)
 	e.GET("/api/v1/parking-zones/:id", parkingHandler.GetByID)
+	e.PUT(
+		"/api/v1/parking-zones/:id",
+		parkingHandler.Update,
+		middleware.JWTMiddleware,
+		middleware.RoleMiddleware("admin"),
+	)
+	e.DELETE(
+		"/api/v1/parking-zones/:id",
+		parkingHandler.Delete,
+		middleware.JWTMiddleware,
+		middleware.RoleMiddleware("admin"),
+	)
+
+
 }

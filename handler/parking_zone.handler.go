@@ -74,3 +74,51 @@ func (h *ParkingZoneHandler) GetByID(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, zone)
 }
+
+func (h *ParkingZoneHandler) Update(c echo.Context) error {
+
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"error": "invalid parking zone id",
+		})
+	}
+
+	var req dto.UpdateParkingZoneRequest
+
+	if err := c.Bind(&req); err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"error": "invalid request body",
+		})
+	}
+
+	if err := h.parkingService.Update(uint(id), req); err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]string{
+		"message": "Parking zone updated successfully",
+	})
+}
+
+func (h *ParkingZoneHandler) Delete(c echo.Context) error {
+
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"error": "invalid parking zone id",
+		})
+	}
+
+	if err := h.parkingService.Delete(uint(id)); err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]string{
+		"message": "Parking zone deleted successfully",
+	})
+}

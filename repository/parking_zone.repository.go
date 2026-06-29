@@ -10,6 +10,8 @@ type ParkingZoneRepository interface {
 	Create(zone *models.ParkingZone) error
 	GetAll() ([]models.ParkingZone, error)
 	FindByID(id uint) (*models.ParkingZone, error)
+	Update(zone *models.ParkingZone) error
+	Delete(id uint) error
 }
 
 type parkingZoneRepository struct {
@@ -47,4 +49,13 @@ func (r *parkingZoneRepository) FindByID(id uint) (*models.ParkingZone, error) {
 	}
 
 	return &zone, nil
+}
+
+func (r *parkingZoneRepository) Update(zone *models.ParkingZone) error {
+	return r.db.Save(zone).Error
+}
+
+// DELETE PARING ZONE
+func (r *parkingZoneRepository) Delete(id uint) error {
+	return r.db.Delete(&models.ParkingZone{}, id).Error
 }
