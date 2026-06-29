@@ -12,25 +12,29 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	// Load environment variables
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	// Load .env only if it exists
+	_ = godotenv.Load()
+
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		log.Fatal("DATABASE_URL is not set")
 	}
 
-	// Get DATABASE_URL from .env
-	dsn := os.Getenv("DATABASE_URL")
-
-	// Connect to PostgreSQL
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Failed to connect to database")
+		log.Fatal("Failed to connect to database:", err)
 	}
 
 	DB = db
-	err = DB.AutoMigrate(&models.User{}, &models.ParkingZone{}, &models.Reservation{})
+
+	err = DB.AutoMigrate(
+		&models.User{},
+		&models.ParkingZone{},
+		&models.Reservation{},
+	)
 	if err != nil {
-		log.Fatal("Failed to migrate database")
+		log.Fatal("Failed to migrate database:", err)
 	}
+
 	log.Println("Database connected successfully")
 }
